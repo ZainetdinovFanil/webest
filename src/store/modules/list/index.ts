@@ -36,7 +36,7 @@ const listModule: Module<any, any> = {
         method: 'GET',
         });
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Error');
         }
         const data = await response.json();
         commit('setList', data);

@@ -18,19 +18,11 @@ const detailModule: Module<any, any> = {
   actions: {
     async fetchTenderDetail({ commit }, id: number): Promise<void> {
       try {
-       /*  const response = await axios.get(`element/`, {
-          params: {
-            id: id,
-          },
-        }); */
-        console.log(444);
-        
         const response = await fetch(`https://api.test-webest.ru/element/?id=${id}`,{
-          
         method: 'GET',
       });
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Error');
       }
       const data = await response.json();
       commit('setTenderDetail', data);
