@@ -1,24 +1,12 @@
-# webest
-
-## Project setup
-```
+Инструкция по установке и запуску проекта
+Убедитесь, что у вас установлен Node.js (20.16.0) и npm (Node Package Manager 10.8.1). Затем выполните следующие команды для установки зависимостей проекта:
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+Для запуска проекта в режиме разработки выполните следующую команду:
 npm run serve
-```
 
-### Compiles and minifies for production
-```
+Для сборки проекта в продакшн-режим выполните следующую команду:
 npm run build
-```
 
-### Lints and fixes files
-```
+Для проверки кода на соответствие стандартам выполните следующую команду:
 npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
