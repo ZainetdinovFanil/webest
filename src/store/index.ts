@@ -1,14 +1,10 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import listModule from './modules/list/index';
+import detailModule from './modules/detail/index';
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
-  }
-})
+    list: listModule,
+    detail: detailModule,
+  },
+});
