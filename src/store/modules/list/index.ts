@@ -1,5 +1,4 @@
 import { Module } from 'vuex';
-import axios from '../../axios';
 import { List } from './types';
 
 const listModule: Module<any, any> = {
@@ -11,26 +10,37 @@ const listModule: Module<any, any> = {
       page_size: 0,
       total: 0,
     } as List,
+    currentPage: 1 as number,
   },
   getters: {
     getList(state): List {
       return state.list;
+    },
+    getCurrentPage(state): number {
+      return state.currentPage;
     },
   },
   mutations: {
     setList(state, value: List): void {
       state.list = value;
     },
+    setCurrentPage(state, page: number): void {
+      state.currentPage = page;
+    },
   },
   actions: {
-    async listAction({ commit }, data: number): Promise<void> {
+    async listAction({ commit }, { page }): Promise<void> {
       try {
-        const response = await axios.get('list/', {
-          params: {
-            page: data,
-          },
+        const response = await fetch(`https://api.test-webest.ru/list/?page=${page}`,{
+          
+        method: 'GET',
         });
-        commit('setList', response.data);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        commit('setList', data);
+        commit('setCurrentPage', page);
       } catch (err) {
         console.log(err);
       }

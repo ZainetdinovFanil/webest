@@ -1,5 +1,4 @@
 import { Module } from 'vuex';
-import axios from '../../axios';
 import { TenderDetail } from './types';
 
 const detailModule: Module<any, any> = {
@@ -19,15 +18,25 @@ const detailModule: Module<any, any> = {
   actions: {
     async fetchTenderDetail({ commit }, id: number): Promise<void> {
       try {
-        const response = await axios.get(`element/`, {
+       /*  const response = await axios.get(`element/`, {
           params: {
             id: id,
           },
-        });
-        commit('setTenderDetail', response.data);
-      } catch (err) {
-        console.log(err);
+        }); */
+        console.log(444);
+        
+        const response = await fetch(`https://api.test-webest.ru/element/?id=${id}`,{
+          
+        method: 'GET',
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      const data = await response.json();
+      commit('setTenderDetail', data);
+    } catch (err) {
+      console.log(err);
+    }
     },
   },
 };
